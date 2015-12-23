@@ -1,51 +1,40 @@
-module.exports = function(app) {
+var logger = require('pomelo-logger').getLogger('con-log');
+
+module.exports = function (app) {
   return new Handler(app);
 };
 
-var Handler = function(app) {
+var Handler = function (app) {
   this.app = app;
 };
 
-/**
- * New client entry.
- *
- * @param  {Object}   msg     request message
- * @param  {Object}   session current session object
- * @param  {Function} next    next step callback
- * @return {Void}
- */
-Handler.prototype.entry = function(msg, session, next) {
-  next(null, {code: 200, msg: 'game server is ok.'});
-};
+var handler = Handler.prototype;
 
 /**
- * Publish route for mqtt connector.
+ * New client entry chat server.
  *
  * @param  {Object}   msg     request message
  * @param  {Object}   session current session object
  * @param  {Function} next    next step callback
  * @return {Void}
  */
-Handler.prototype.publish = function(msg, session, next) {
-	var result = {
-		topic: 'publish',
-		payload: JSON.stringify({code: 200, msg: 'publish message is ok.'})
-	};
-  next(null, result);
-};
+handler.enter = function (msg, session, next) {
+  var self = this,
+    uid = msg.uid;
 
-/**
- * Subscribe route for mqtt connector.
- *
- * @param  {Object}   msg     request message
- * @param  {Object}   session current session object
- * @param  {Function} next    next step callback
- * @return {Void}
- */
-Handler.prototype.subscribe = function(msg, session, next) {
-	var result = {
-		topic: 'subscribe',
-		payload: JSON.stringify({code: 200, msg: 'subscribe message is ok.'})
-	};
-  next(null, result);
+  var sessionService = self.app.get('sessionService');
+
+  session.bind(uid);
+
+  session.pushAll(function (err) {
+    if (err) {
+      next(err);
+    } else {
+      next(null, {
+        uid: uid,
+        sid: session.id,
+        frontendId: session.frontendId
+      });
+    }
+  });
 };

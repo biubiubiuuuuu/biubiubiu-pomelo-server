@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,15 @@
   "homepage": "https://github.com/violet-day/biubiubiu-pomelo-server#readme",
   "dependencies": {
     "crc": "^3.4.0",
-    "pomelo": "^1.2.0"
+    "lodash": "^3.10.1",
+    "pomelo": "^1.2.0",
+    "pomelo-logger": "^0.1.7",
+    "pomelo-nodejsclient-websocket": "0.0.2"
   },
   "devDependencies": {
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "pomelo-node-client": "github:williamdu2877/pomelo-node-client",
+    "pomelo-node-tcp-client": "^0.1.5",
+    "should": "^8.0.2"
   }
 }
