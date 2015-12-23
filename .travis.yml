@@ -1,7 +1,12 @@
 language: node_js
 node_js:
   - "4.0"
-before_install:
+
+env:
+  - CC=clang CXX=clang++ npm_config_clang=1
+
+install:
   - sudo apt-get install gcc-4.8 -y
+
 before_script:
   - 'node_modules/.bin/pomelo start'
