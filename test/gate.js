@@ -8,7 +8,7 @@ var util = require('./utils');
 var should = require('should');
 var _ = require('lodash');
 
-describe('gate', function () {
+describe.skip('gate', function () {
 
   describe('handler', function () {
 
