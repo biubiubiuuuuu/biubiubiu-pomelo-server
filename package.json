@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/pomelo start",
+    "start": "node_modules/.bin/pomelo start -e production",
     "test": "mocha"
   },
   "repository": {
