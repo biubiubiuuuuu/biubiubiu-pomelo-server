@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start":"node_modules/.bin/pomelo start -D",
     "test": "mocha"
   },
   "repository": {
@@ -20,6 +21,7 @@
     "crc": "^3.4.0",
     "lodash": "^3.10.1",
     "pomelo": "^1.2.0",
+    "pomelo-globalchannel-plugin": "0.0.7",
     "pomelo-logger": "^0.1.7",
     "pomelo-nodejsclient-websocket": "0.0.2"
   },
