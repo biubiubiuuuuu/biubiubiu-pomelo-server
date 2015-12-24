@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node_modules/.bin/pomelo start -D && node_modules/.bin/pomelo list",
+    "start":"node_modules/.bin/pomelo start -D",
     "test": "mocha"
   },
   "engines": {
