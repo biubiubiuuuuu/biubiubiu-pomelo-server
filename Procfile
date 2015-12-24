@@ -1,0 +1,1 @@
+web: node_modules/.bin/pomelo start -D && node_modules/.bin/pomelo list
