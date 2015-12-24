@@ -1,1 +1,1 @@
-web: node_modules/.bin/pomelo start -D
+web: node_modules/.bin/pomelo start
