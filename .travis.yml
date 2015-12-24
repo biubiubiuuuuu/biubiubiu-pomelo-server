@@ -4,4 +4,4 @@ node_js:
 env:
   - CC=clang CXX=clang++ npm_config_clang=1
 before_script:
-  - 'npm start'
+  - 'node_modules/.bin/pomelo start -D'
