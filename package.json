@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node_modules/.bin/pomelo start -D",
+    "start": "node_modules/.bin/pomelo start -D",
     "test": "mocha"
   },
   "engines": {
-    "node": "0.4"
+    "node": "0.4",
+    "npm": "3.3.10"
   },
   "repository": {
     "type": "git",
