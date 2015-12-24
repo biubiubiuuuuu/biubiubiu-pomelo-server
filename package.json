@@ -7,10 +7,6 @@
     "start": "node_modules/.bin/pomelo start -D",
     "test": "mocha"
   },
-  "engines": {
-    "node": "0.4",
-    "npm": "3.3.10"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/violet-day/biubiubiu-pomelo-server.git"
