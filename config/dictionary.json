@@ -1,1 +1,5 @@
-{}
+[
+  "onUserEnter",
+  "onUserLeave",
+  "onComment"
+]
