@@ -8,6 +8,7 @@ module.exports = function (app) {
 var Handler = function (app) {
   this.app = app;
   this.globalChannelService = app.get('globalChannelService');
+  this.modelService = app.get('modelService');
 };
 
 var handler = Handler.prototype;
@@ -24,5 +25,15 @@ handler.getMembers = function (msg, session, callback) {
 };
 
 handler.comment = function (msg, session, callback) {
+  msg.room = session.get('room');
+  this.modelService.models.Comment.create(msg);
   this.globalChannelService.pushMessage('connector', 'onComment', msg, session.get('room'), {}, callback);
+};
+
+handler.getComment = function (msg, session, callback) {
+
+  msg.where = msg.where || {};
+  msg.where.room = session.get('room');
+
+  this.modelService.models.Comment.find(msg.where, callback);
 };

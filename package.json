@@ -21,6 +21,7 @@
     "crc": "^3.4.0",
     "dotenv": "^1.2.0",
     "lodash": "^3.10.1",
+    "mongoose": "^4.3.4",
     "pomelo": "^1.2.0",
     "pomelo-globalchannel-plugin": "0.0.7",
     "pomelo-logger": "^0.1.7",
