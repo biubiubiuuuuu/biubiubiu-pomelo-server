@@ -17,6 +17,13 @@
         "clientPort": 3010,
         "frontend": true
       }
+    ],
+    "chat": [
+      {
+        "id": "chat-server-1",
+        "host": "127.0.0.1",
+        "port": 6050
+      }
     ]
   },
   "production": {
