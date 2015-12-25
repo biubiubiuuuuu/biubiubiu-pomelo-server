@@ -1,5 +1,6 @@
 var pomelo = require('pomelo');
 var globalChannel = require('pomelo-globalchannel-plugin');
+require('dotenv').load();
 
 /**
  * Init app for client.
@@ -9,8 +10,8 @@ app.set('name', 'biubiubiu-pomelo-server');
 
 app.use(globalChannel, {
   globalChannel: {
-    host: '127.0.0.1',
-    port: 6379,
+    host: process.env.redis_host || '127.0.0.1',
+    port: process.env.redis_port || 6379,
     db: '0',
     cleanOnStartUp: true
   }
