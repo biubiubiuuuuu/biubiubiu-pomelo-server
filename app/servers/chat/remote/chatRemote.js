@@ -20,13 +20,22 @@ var ChatRemote = function (app) {
  * @param callback
  */
 ChatRemote.prototype.add = function (uid, sid, name, callback) {
-  logger.debug('%s:%s enter room ', uid, sid);
+
   var globalChannelService = this.globalChannelService;
-  globalChannelService.add(name, uid, sid, function (err, result) {
+  globalChannelService.add(name, uid, sid, function (err) {
+    if (err) {
+      return callback(err);
+    }
+    logger.debug('%s:%s enter room ', uid, sid);
+    globalChannelService.pushMessage('connector', 'onUserEnter', {uid: uid}, name, {}, callback);
+  });
+};
+
+ChatRemote.prototype.leave = function (uid, sid, name, callback) {
+  logger.debug('%s:%s leave room ', uid, sid);
+  var globalChannelService = this.globalChannelService;
+  globalChannelService.leave(name, uid, sid, function (err) {
     if (err)return callback(err);
-    globalChannelService.pushMessage('connector', 'onNewUser', {uid: uid}, name, function (err) {
-      if (err)logger.error(err);
-    });
-    callback(null, result);
+    globalChannelService.pushMessage('connector', 'onUserLeave', {uid: uid}, name, {}, callback);
   });
 };

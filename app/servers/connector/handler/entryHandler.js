@@ -7,6 +7,7 @@ module.exports = function (app) {
 
 var Handler = function (app) {
   this.app = app;
+  this.globalChannelService = app.get('globalChannelService');
 };
 
 var handler = Handler.prototype;
@@ -23,7 +24,7 @@ handler.enter = function (msg, session, callback) {
   var uid = msg.username + '@' + msg.room;
 
   session.bind(uid);
-
+  session.set('room', msg.room);
   session.pushAll(function (err) {
     if (err)return callback(err);
     self.app.rpc.chat.chatRemote.add(session, uid, session.frontendId, msg.room, function (err) {
@@ -35,4 +36,12 @@ handler.enter = function (msg, session, callback) {
       });
     });
   });
+
+  session.on('closed', function () {
+    self.app.rpc.chat.chatRemote.leave(session, uid, session.frontendId, msg.room, function (err) {
+      if (err) {
+        logger.error(err)
+      }
+    });
+  })
 };
